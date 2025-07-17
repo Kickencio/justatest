@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<!-- ESTRUCTURA -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SCL CRUD | Subir archivo</title>
+    <link rel="icon" type="x-icon" href="../images/IFXCALLER.ico"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+<!-- ESTRUCTURA -->
+
+<!-- CUERPO -->
+<body class="d-flex flex-column min-vh-100">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-entel">
+  <div class="container-fluid">
+    <img src="../images/IFXCALLER.png" alt="" class="navbar-logo">
+    <a class="navbar-brand text-white" href="/">ENTEL MONITOREO</a>
+    <button class="navbar-toggler navbar-toggler-white-border" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon navbar-toggler-invert"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+      <form class="d-flex" role="search" method="GET" action="/search">
+        <input class="form-control me-2" type="search" name="codigo" placeholder="Buscar cliente" aria-label="Search" 
+        style="cursor: not-allowed;" disabled/>
+      </form>
+    </div>
+  </div>
+</nav>
+<!-- NAVBAR -->
+
+<!-- FORMULARIO -->
+<div class="container my-5">
+  <div class="form-card mx-auto max-width-800">
+    <h2 class="text-center mb-4 form-title">Subir archivo Excel </h2>
+    <% if (success_msg && success_msg.length > 0) { %>
+      <div class="alert alert-success custom-flash fade show flashMessage" role="alert">
+        <%= success_msg[0] %>
+      </div>
+    <% } %>
+    <% if (error_msg && error_msg.length > 0) { %>
+      <div class="alert alert-danger custom-flash fade show flashMessage" role="alert">
+        <%= error_msg[0] %>
+      </div>
+    <% } %>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="excelFile" class="form-label">Archivo Excel (.xlsx .csv)</label>
+        <input type="file" name="excelFile" class="form-control" accept=".xlsx , .csv" required>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-success btn-icon"><i class='bx bx-upload'></i> Subir y actualizar</button>
+        <a href="/" class="btn btn-icon btn-cancel" id="btn-back"><i class='bx bx-arrow-back'></i> Volver</a>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- FORMULARIO -->
+
+<!-- FOOTER -->
+<br><br><br><br>
+<footer class="footer footer-entel text-white text-center py-3">
+  <div class="container">ENTEL MONITOREO © 2025 - Todos los derechos reservados</div>
+</footer>
+<!-- FOOTER -->
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  setTimeout(() => {
+    const flashes = document.querySelectorAll('.flashMessage');
+    flashes.forEach(flash => {
+      flash.style.opacity = '0';
+      setTimeout(() => flash.remove(), 500);
+    });
+  }, 2000);
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const fileInput = document.querySelector('input[name="excelFile"]');
+  fileInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const ext = file.name.split('.').pop().toLowerCase();
+      if (ext !== 'xlsx' && ext !== 'csv') {
+        alert('Solo se permiten archivos .xlsx o .csv');
+        fileInput.value = '';
+      }
+    }
+  });
+});
+</script>
+<!-- SCRIPTS -->
+
+</body>
+<!-- CUERPO -->
+
+</html>

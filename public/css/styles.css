@@ -1,0 +1,912 @@
+/* ========== ESTILO GENERAL ========== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  background-color: #f1f3f5;
+  font-family: 'Segoe UI', sans-serif;
+  padding-top: 35px !important; /* Ajusta esto según la altura real de tu navbar */
+  font-size: 16px;
+  font-weight: 400;
+  color: #4B8398;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-y: scroll; /* Fuerza el scroll vertical */
+}
+
+.container {
+  flex: 1 0 auto; /* el contenido ocupa espacio flexible */
+  max-width: 1800px;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll; /* fuerza scroll vertical siempre visible */
+}
+
+footer.footer {
+  width: 100%;
+  background-color: #4B8398;
+  flex-shrink: 0;
+  padding: 1rem 0;
+  position: relative;
+  border: none;
+}
+
+/* ========== NAVBAR Y FOOTER PERSONALIZADOS ========== */
+.navbar-entel {
+  background-color: #4B8398 !important;
+  z-index: 1030 !important;
+}
+
+.navbar-logo {
+  width: 40px !important;
+  margin-right: 8px !important;
+}
+
+.navbar-toggler-white-border {
+  border-color: white !important;
+}
+
+.navbar-toggler-invert {
+  filter: invert(1) !important;
+}
+
+.max-width-800 {
+  max-width: 800px !important;
+}
+
+.footer-entel {
+  background-color: #4B8398 !important;
+}
+
+/* ========== FORM CONTROLS ========== */
+button.btn {
+  width: 210px !important;
+  max-width: 100% !important;
+  height: 50px !important;
+  max-height: 100% !important;
+}
+
+.scroll-top-btn{
+
+  width: 40px;
+  height: 40px 
+}
+
+
+
+
+.btn-header, .btn-cuadrado, .btn-scroll-top, .btn-danger, .btn-scroll-top-l{
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 !important;
+  font-size: 1.4rem;
+}
+
+
+
+@media (max-width: 991px) {
+ 
+  .scroll-top-btn{
+
+     
+    margin-bottom: 10px;
+}
+
+
+}
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+  .btn-header, .btn-cuadrado, .btn-scroll-top, .btn-danger {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+    font-size: 1.1rem;
+  }
+
+  .scroll-top-btn{
+
+     width: 32px ;
+    height: 32px;
+    margin-bottom: 10px;
+}
+
+
+
+}
+
+
+
+
+input.form-control,
+button.btn,
+textarea.form-control,
+select.form-select {
+  border-radius: 0 !important;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #4B8398;
+}
+
+input::placeholder {
+  color: #4B8398;
+  opacity: 0.5;
+}
+
+.form-control {
+  border-radius: 0 !important;
+  width: 100%;
+}
+
+/* ========== OCULTAR LA X DEL INPUT SEARCH ========== */
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+/* ========== BOTONES ========== */
+.btn-group > .btn {
+  margin-right: 8px;
+}
+.navbar.navbar-expand-lg.fixed-top img {
+  width: 40px;
+  margin-right:8px ;
+}
+
+.btn-success,
+.btn-outline-buscar,
+.btn-outline-secundario,
+.btn-info,
+.btn-danger,
+.btn-scroll-top,
+.btn-cancel,
+.custom-formulario .btn-primary {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none;
+}
+#btnc2{
+  margin-top: 17px;
+}
+
+.btn-scroll-top {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  display: none;
+  z-index: 9999;
+  border-radius: 50%;
+  padding: 12px 16px;
+  background-color: #0d6efd; /* Azul Bootstrap */
+  color: white;
+  border: none;
+  
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-scroll-top:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+}
+
+.btn-scroll-top i {
+  font-size: 24px;
+}
+
+
+
+
+.scroll-top-btn {
+  background-color: #7ee260;
+  border-color: #7ee260;
+  border-radius: 0% !important;
+  font-size: 20px;  
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.bi-person-circle{
+margin-bottom: 2px;
+
+
+}
+
+.btn-success {
+  background-color: #4B8398;
+  border: none;
+  padding: 10px 10px;
+  width: 210px !important;
+  height: 50px !important;
+  max-width: 100% !important;
+  border-radius: 0 !important;
+  color: #fff;
+  margin-top: 17px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-info {
+  background-color: #4b8398 !important;
+  border-color: #4b8398 !important;
+  color: white !important;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger {
+  background-color: #f30e25;
+  border-color: #f30e25;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger2 {
+  background-color: #f30e25;
+  border-color: #f30e25;
+  color: #fff !important;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-cancel {
+  background-color: #5a5a5a;
+  border-color: #5a5a5a;
+  width: 210px !important;
+  max-width: 100% !important;
+  height: 50px !important;
+  max-height: 100% !important;
+  color: #ffffff !important;
+  border-radius: 0 !important;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#btn-back{
+  margin-top: 17px;
+}
+
+.btn-cuadrado {
+  width: 40px;
+  height: 40px;
+  margin-left: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 !important;
+  font-size: 18px;
+}
+
+.btn-success:hover {
+  background-color: #6da2b3 !important;
+  border-color: #6da2b3 !important;
+}
+
+.btn-info:hover {
+  background-color: #6da2b3 !important;
+  border-color: #6da2b3 !important;
+  color: white !important;
+}
+
+.scroll-top-btn:hover {
+  background-color: #a3e485 !important;
+  border-color: #a3e485 !important;
+}
+
+#openUserInfo:hover{
+
+  background-color:  rgb(218, 124, 90) !important;
+  border-color: rgb(218, 124, 90) !important;
+}
+
+.btn-danger:hover {
+  background-color: #f73447!important;
+  border-color: #f73447 !important;
+}
+
+.btn-danger2:hover {
+  background-color: #fc4254!important;
+  border-color: #fc4254!important;
+}
+
+
+.btn-cancel:hover {
+  background-color: #707070 !important;
+  border-color: #707070 !important;
+}
+
+.btn-outline-buscar {
+  background-color: white;
+  color: #4B8398 !important;
+  border: 1px solid #4B8398;
+  width: 10px;
+  font-size: 16px !important;
+  padding: 8px 16px;
+  border-radius: 0 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-outline-buscar:hover {
+  background-color: #6da2b3;
+  color: white !important;
+  border-color: #6da2b3;
+}
+
+.btn-outline-secundario {
+  background-color: white;
+  color: #4B8398 !important;
+  border: 1px solid #4B8398;  
+  width: 70px !important;
+  max-width: 100% !important;
+  height: 50px !important;
+  max-height: 100% !important;
+  border-radius: 0 !important;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-outline-secundario:hover {
+  background-color: #6da2b3;
+  color: white !important;
+  border-color: #6da2b3;
+}
+
+.botones-accion {
+  margin-top: 33px;
+  margin-bottom: 20px;
+}
+
+
+/* ========== FORMULARIO ========== */
+.custom-formulario {
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  border: 1px solid #4b8398;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.custom-formulario legend {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #4b8398;
+  margin-bottom: 20px;
+}
+
+.custom-formulario .form-label {
+  color: #4b8398;
+  font-weight: 500;
+}
+
+.custom-formulario .form-control,
+.custom-formulario .form-select {
+  border-color: #4b8398;
+}
+
+.custom-formulario .btn-primary {
+  background-color: #4b8398;
+  border-color: #4b8398;
+  border-radius: 0 !important;
+  transition: background-color 0.3s ease;
+}
+
+.custom-formulario .btn-primary:hover {
+  background-color: #5c96a8 !important;
+  border-color: #5c96a8 !important;
+}
+
+/* ========== FORMULARIO CARD ========== */
+.form-card {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 2rem;
+  border-radius: 0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  color: #4B8398;
+  font-weight: 600;
+}
+
+.max-width-800 {
+  max-width: 800px !important;
+}
+
+/* ========== CONTENEDORES ========== */
+.formulario-contenedor {
+  display: flex;
+  justify-content: center;
+  margin-top: 45px;
+  margin-bottom: 50px;
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* ========== TABLA PRINCIPAL ========== */
+.custom-table {
+  width: 1500px; /* Fijo */
+  table-layout: fixed;
+  word-wrap: break-word;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+td, th {
+  white-space: nowrap; /* no deja que el contenido se quiebre en líneas */
+  overflow: visible !important; /* fuerza que no aparezcan los puntos */
+  text-overflow: clip; /* no poner puntos suspensivos */
+}
+
+.custom-table td {
+  font-size: 14px !important;
+}
+
+.custom-table th {
+  font-size: 18px;
+}
+
+.custom-table thead th {
+  position: sticky;
+  top: 10px; /* antes 0px */
+  background-color: #4B8398;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  z-index: 1;
+}
+
+.custom-table th,
+.custom-table td {
+  border: 1px solid #4B8398;
+  padding: 12px 16px;
+  vertical-align: middle;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  color: #4B8398;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-table tbody tr {
+  background-color: white;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* ========== BOTÓN CON ÍCONO ========== */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.custom-flash {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 400px;
+  width: auto;
+  padding: 20px 40px 20px 20px; /* más padding a la derecha */
+  z-index: 1050;
+  border-radius: 0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  padding: 10px;
+ 
+  transition: opacity 0.5s ease;
+}
+
+/* ========== CONTENEDOR SCROLL PARA TABLA ========== */
+/* Contenedor general para centrar la tabla */
+.tabla-contenedor {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.col-checkbox {
+  width: 5%;
+  text-align: center;
+}
+
+.col-codcliente {
+  width: 13%;
+  text-align: center;
+}
+
+.col-clientealias {
+  width: 25%;
+  text-align: center;
+}
+
+.col-nombres {
+  width: 20%;
+  text-align: center;
+}
+
+.col-skill {
+  width: 13%;
+  text-align: center;
+}
+
+.col-skilldes {
+  width: 13%;
+  text-align: center;
+}
+
+.col-plataforma {
+  width: 11%;
+  text-align: center;
+}
+
+.col-action{
+  width: 7%;
+  text-align: center;
+}
+
+.tabla-delete {
+  margin-top: 30px;
+}
+
+.mb-5 {
+    margin-bottom: 28px !important;
+}
+
+/* ========== TABLA PRINCIPAL CON ENCABEZADO FIJO ========== */
+/* Tabla responsiva y centrada */
+.custom-table {
+  min-width: 1000px; /* Ajusta este valor según tu cantidad de columnas */
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+/* Para evitar doble scroll */
+.custom-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* Estilos para fijar el encabezado */
+.custom-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #4B8398;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  z-index: 1;
+}
+
+.custom-table th,
+.custom-table td {
+  border: 1px solid #4B8398;
+  padding: 12px 16px;
+  vertical-align: middle;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  color: #4B8398;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-table tbody tr {
+  background-color: white;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* ========== PAGINACIÓN PERSONALIZADA ========== */
+.pagination .page-link {
+  color: #4B8398;
+  border-radius: 0 !important;
+  border: 1px solid #4B8398;
+  background: #fff;
+  font-weight: 500;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 0.2s, color 0.2s;
+  margin: 0 2px;
+}
+.pagination .page-link:hover,
+.pagination .page-item.active .page-link {
+  background: #4B8398;
+  color: #fff;
+  border-color: #4B8398;
+}
+.pagination .page-item.disabled .page-link {
+  color: #aaa;
+  background: #e9ecef;
+  border-color: #dee2e6;
+}
+
+/* ========== BOTÓN FLOTANTE ELIMINAR ========== */
+
+@media (max-width: 991px) {
+  .btn-float-delete {
+    right: 12px;
+    padding: 12px 14px;
+    font-size: 18px;
+  }
+  .icon-float-delete {
+    font-size: 1.7rem;
+  }
+
+  #openUserInfo{
+
+    margin-top: 10px;
+  }
+
+
+}
+
+/* ========== NUEVAS CLASES DE ESTILOS EN LÍNEA CENTRALIZADOS ========== */
+.navbar-bg {
+  background-color: #4B8398 !important;
+  z-index: 1030 !important;
+}
+.logo-img {
+  width: 40px;
+  margin-right: 8px;
+}
+.input-disabled {
+  background-color: #e9ecef !important;
+  color: #6c757d !important;
+  border-color: #ced4da !important;
+  cursor: not-allowed !important;
+}
+.footer-bg {
+  background-color: #4B8398 !important;
+}
+.mt-btn-cancel {
+  margin-top: 17px !important;
+}
+
+
+
+/* login style */
+
+
+/* Fondo con animación */
+.login-page{
+    background: url('/images/fondo_login.jpg') no-repeat center center fixed;
+    background-size: cover;
+    animation: gradientAnimation 50s ease infinite;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Estilo Glassmorphism */
+.login-rectangular {
+  max-width: 800px;
+  width: 100%;
+  border-radius: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  color: #4B8398;
+}
+h3 {
+  color: #4B8398;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.logo-section {
+  flex: 2;
+  
+}
+
+.logo-section img {
+  width: 100%;
+  height: auto;
+}
+
+.form-section {
+  flex: 4;
+
+}
+
+.navbar-login {
+  width: 150px !important;     /* Ajusta el tamaño del logo */
+  height: auto !important;     /* Mantiene proporción */
+  object-fit: contain;         /* Asegura que no se distorsione */
+  display: block;
+  margin: auto;
+}
+
+
+
+.no-radius {
+  border-radius: 0 !important;
+}
+
+.login-page .btn.btn-primary {
+    background-color: #0d8baa;
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    color: #fff;
+    width: 100%;
+    cursor: pointer;
+}
+
+
+
+.login-page .d-grid {
+    display: flex;
+    justify-content: center;
+  
+}
+
+.login-page .btn.btn-primary:hover {
+    background-color: #096a97;
+    box-shadow: 0 0 15px #0d8baa, 0 0 30px #0d8baa;
+}
+
+
+
+.alert-danger {
+    background-color:#d00000;
+    box-shadow: 0 0 10px rgba(208, 0, 0, 0.4);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    transition: opacity 0.5s ease;
+}
+
+
+
+
+.modal-overlay {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+}
+
+.modal-content h4 {
+  color: #4B8398;
+  margin-bottom: 20px;
+}
+
+.modal-content p {
+  margin: 10px 0;
+  color: #333;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#logoutButton {
+  margin: 20px auto 0 !important;
+  display: block !important;
+  background-color: #f30e25 !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  font-weight: bold !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+}
+
+#logoutButton:hover {
+  background-color: #c7001b !important;
+}

@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="es">
+<!-- ESTRUCTURA -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SCL CRUD | Inicio</title>
+    <link rel="icon" type="x-icon" href="/images/IFXCALLER.png"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+<!-- ESTRUCTURA -->
+
+<!-- CUERPO -->
+<body class="d-flex flex-column min-vh-100">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-entel">
+  <div class="container-fluid">
+    <img src="/images/IFXCALLER.png" alt="" class="navbar-logo">
+    <a class="navbar-brand text-white" href="/">ENTEL MONITOREO</a>
+    <button class="navbar-toggler navbar-toggler-white-border" type="button" data-bs-toggle="collapse"data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon navbar-toggler-invert"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+      <button type="button" class="scroll-top-btn" id="scrollTopBtn" title="Ir arriba">
+        <i class='bx bx-chevron-up'></i>
+      </button>
+      <form class="d-flex" role="search">
+        <button   type="submit" form="deleteMultipleForm" class="btn-danger btn-icon me-2" title="Eliminar seleccionados"><i class='bx bx-trash'></i></button>
+        <input id="searchInput" class="form-control me-2" type="search" name="codigo" placeholder="Buscar cliente" aria-label="Search" autocomplete="off" />
+        </button>
+      </form>
+      <button id="openUserInfo" class="scroll-top-btn"style="background-color: rgb(212, 97, 54);border-color:rgb(212, 97, 54);">
+        <i class="bi bi-person-circle"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+<!-- NAVBAR -->
+
+<!-- CONTENIDO PRINCIPAL -->
+
+<div id="userModal" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <h4>Información del Usuario</h4>
+    <p><strong>Nombre:</strong> <%= usuario.NOMBRE %></p>
+    <p><strong>Cargo:</strong> <%= usuario.CARGO %></p>
+    <form id="logoutForm" action="/logout" method="POST">
+      <button id="logoutButton" type="submit" class="btn btn-danger">Cerrar Sesión</button>
+    </form>
+  </div>
+</div>
+
+<!-- BEGIN: Confirmación de Logout -->
+<div id="confirmLogoutModal" class="modal-overlay" style="display: none;">
+  <div class="modal-content" style="max-width:400px;">
+    <button class="btn-close float-end" id="closeConfirm"></button>
+    <h5 class="mt-2">¿Estás seguro?</h5>
+    <p>Se cerrará tu sesión y volverás al login.</p>
+    <div class="d-flex justify-content-end gap-2 mt-4">
+      <button id="confirmLogoutYes" class="btn btn-danger">Sí, cerrar sesión</button>
+      <button id="confirmLogoutNo" class="btn btn-secondary">No, cancelar</button>
+    </div>
+  </div>
+</div>
+<!-- END: Confirmación de Logout -->
+
+<main class="container flex-grow-1 d-flex flex-column">
+  <!-- BOTONES -->
+  <div class="text-center botones-accion">
+    <div class="d-flex justify-content-center gap-3 flex-wrap mt-4">
+      <a href="/crear" class="btn btn-success btn-icon"><i class='bx bx-plus'></i>Agregar cliente</a>
+      <a href="/subir" class="btn btn-success btn-icon"><i class='bx bx-upload'></i>Subir archivo</a>
+    </div>
+  </div>
+  <!-- BOTONES -->
+
+  <!-- TABLA -->
+  <form id="deleteMultipleForm" action="/confirmar-multiples" method="POST">
+    <div class="tabla-contenedor">
+      <div class="custom-table-wrapper">
+        <table class="custom-table mt-3">
+          <thead>
+            <tr>
+              <th class="col-checkbox">
+                <input type="checkbox" id="selectAllCheckbox">
+              </th>
+              <th class="col-codcliente">Codigo de cliente</th>
+              <th class="col-clientealias">Alias de cliente</th>
+              <th class="col-nombres">Nombre de cliente</th>
+              <th class="col-skill">Habilidad</th>
+              <th class="col-skilldes">Descripción</th>
+              <th class="col-plataforma">Plataforma</th>
+              <th class="col-action">Editar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% results.forEach((t_monitoreo) => { %>
+            <tr>
+              <td class="col-checkbox">
+                <input type="checkbox" class="rowCheckbox" name="clientesSeleccionados" value="<%= t_monitoreo.COD_CLIENTE %>">
+              </td>
+              <td><%= t_monitoreo.COD_CLIENTE %></td>
+              <td><%= t_monitoreo.CLIENTE_ALIAS %></td>
+              <td ><%= t_monitoreo.NOMBRES %></td>
+              <td ><%= t_monitoreo.SKILL %></td>
+              <td><%= t_monitoreo.SKILL_DES %></td>
+              <td><%= t_monitoreo.PLATAFORMA %></td>
+              <td>
+                <div class="btn-group">
+                  <a href="/editar/<%= t_monitoreo.COD_CLIENTE %>" class="btn btn-cuadrado btn-info"><i class='bx bxs-pencil'></i></a>
+                </div>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+  <!-- TABLA -->
+  <!-- CONTENIDO PRINCIPAL -->
+
+  <!-- MENSAJES FLASH -->
+  <% if (success_msg && success_msg.length > 0) { %>
+    <div class="alert alert-success custom-flash fade show flashMessage" role="alert" id="flashMessage">
+      <%= success_msg[0] %>
+    </div>
+  <% } %>
+  <% if (error_msg && error_msg.length > 0) { %>
+    <div class="alert alert-danger custom-flash fade show flashMessage" role="alert" id="flashMessage2">
+      <%= error_msg[0] %>
+    </div>
+  <% } %>
+</main>
+<!-- MENSAJES FLASH -->
+
+<!-- FOOTER -->
+<br><br><br><br>
+<footer class="footer footer-entel text-white text-center py-3">
+  <div class="container">
+    ENTEL MONITOREO © 2025 - Todos los derechos reservados
+  </div>
+</footer>
+<!-- FOOTER -->
+
+<!-- SCRIPTS -->
+<script>
+  setTimeout(() => {
+    const flashes = document.querySelectorAll('.flashMessage');
+    flashes.forEach(flash => {
+      flash.style.opacity = '0';
+      setTimeout(() => flash.remove(), 500);
+    });
+  }, 2000);
+  // Checkbox encabezado: seleccionar/deseleccionar todos
+  document.getElementById('selectAllCheckbox')?.addEventListener('change', function (e) {
+    const checked = e.target.checked;
+    document.querySelectorAll('.rowCheckbox').forEach(cb => {
+      cb.checked = checked;
+    });
+  })
+  document.getElementById('deleteMultipleForm').addEventListener('submit', function (e) {
+    const checked = document.querySelectorAll('.rowCheckbox:checked');
+    if (checked.length === 0) {
+      e.preventDefault();
+      alert('Selecciona al menos un cliente para eliminar.');
+    }
+  });
+</script>
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const tableBody = document.querySelector('.custom-table tbody');
+  searchInput.addEventListener('input', async () => {
+    const query = searchInput.value.trim();
+    // Si está vacío, puedes elegir mostrar todo o limpiar la tabla
+    if (query === '') {
+      // Si el input queda vacío, recarga la página para mostrar todos los datos
+      location.reload();
+      return;
+    }
+    try {
+      const res = await fetch(`/search?codigo=${encodeURIComponent(query)}`, {
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      if (!res.ok) throw new Error('Error en la búsqueda');
+      const data = await res.json();
+      // data debe ser un arreglo con resultados igual que "results" en EJS
+      // Limpias la tabla
+      tableBody.innerHTML = '';
+      if (data.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="8" class="text-center">No se encontraron resultados</td></tr>';
+        return;
+      }
+      // Iteras resultados y armas filas con template literal
+      data.forEach(t_monitoreo => {
+        const row = `
+          <tr>
+            <td class="col-checkbox">
+              <input type="checkbox" class="rowCheckbox" name="clientesSeleccionados" value="${t_monitoreo.COD_CLIENTE}">
+            </td>
+            <td>${t_monitoreo.COD_CLIENTE}</td>
+            <td>${t_monitoreo.CLIENTE_ALIAS}</td>
+            <td>${t_monitoreo.NOMBRES}</td>
+            <td>${t_monitoreo.SKILL}</td>
+            <td>${t_monitoreo.SKILL_DES}</td>
+            <td>${t_monitoreo.PLATAFORMA}</td>
+            <td>
+              <div class="btn-group">
+                <a href="/editar/${t_monitoreo.COD_CLIENTE}" class="btn btn-cuadrado btn-info"><i class='bx bxs-pencil'></i></a>
+              </div>
+            </td>
+          </tr>
+        `;
+        tableBody.insertAdjacentHTML('beforeend', row);
+      });
+    } catch (error) {
+      console.error(error);
+      tableBody.innerHTML = '<tr><td colspan="8" class="text-center text-danger">Error al buscar datos</td></tr>';
+    }
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script>
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  scrollTopBtn?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  
+</script>
+<!-- SCRIPTS -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("userModal");
+  const openBtn = document.getElementById("openUserInfo");
+  const closeBtn = document.getElementById("closeModal");
+
+  // Asegurar que el modal esté oculto al cargar
+  modal.style.display = "none";
+
+  openBtn.addEventListener("click", function () {
+    modal.style.display = "flex";
+  });
+
+  closeBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  // Cerrar modal al hacer clic fuera del contenido
+  window.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  // -- BEGIN: Confirmación de Logout --
+  // No tocar nada más, solo esto:
+  const userModal = document.getElementById('userModal');
+  const confirmModal = document.getElementById('confirmLogoutModal');
+  const logoutBtn = document.getElementById('logoutButton');
+  const confirmYesBtn = document.getElementById('confirmLogoutYes');
+  const confirmNoBtn = document.getElementById('confirmLogoutNo');
+  const closeConfirmBtn = document.getElementById('closeConfirm');
+
+  logoutBtn.addEventListener('click', e => {
+    e.preventDefault();
+    userModal.style.display = 'none';
+    confirmModal.style.display = 'flex';
+  });
+  confirmNoBtn.addEventListener('click', () => confirmModal.style.display = 'none');
+  closeConfirmBtn.addEventListener('click', () => confirmModal.style.display = 'none');
+  confirmYesBtn.addEventListener('click', () => document.getElementById('logoutForm').submit());
+  // -- END: Confirmación de Logout --
+});
+
+app.get('/', (req, res) => {
+    if (!req.session.usuario) {
+        return res.redirect('/login');
+    }
+
+    res.render('home', {
+        usuario: req.session.usuario
+    });
+});
+
+</script>
+
+</body>
+<!-- CUERPO -->
+
+</html>

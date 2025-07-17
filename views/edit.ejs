@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SCL CRUD | Editar cliente</title>
+    <link rel="icon" type="x-icon" href="../images/IFXCALLER.ico"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-bg">
+  <div class="container-fluid">
+    <img src="../images/IFXCALLER.png" alt="" class="navbar-logo">
+    <a class="navbar-brand text-white" href="/">ENTEL MONITOREO</a>
+    <button class="navbar-toggler navbar-toggler-white-border" type="button" data-bs-toggle="collapse"data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon navbar-toggler-invert"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+      <form class="d-flex" role="search" method="GET" action="/search">
+        <input class="form-control me-2 input-disabled" type="search" name="codigo" placeholder="Buscar cliente" aria-label="Search" disabled/>
+      </form>
+    </div>
+  </div>
+</nav>
+<!-- NAVBAR -->
+
+<!-- FORMULARIO -->
+<% if (t_monitoreo) { %>
+<div class="container my-5">
+  <div class="form-card mx-auto max-width-800">
+    <h2 class="text-center mb-4 form-title">Editar cliente</h2>
+    <% if (success_msg && success_msg.length > 0) { %>
+      <div class="alert alert-success custom-flash fade show flashMessage" role="alert">
+        <%= success_msg[0] %>
+      </div>
+    <% } %>
+    <% if (error_msg && error_msg.length > 0) { %>
+      <div class="alert alert-danger custom-flash fade show flashMessage" role="alert">
+        <%= error_msg[0] %>
+      </div>
+    <% } %>
+    <form action="/actualizar/<%= t_monitoreo.COD_CLIENTE %>" method="POST">
+      <input type="hidden" name="COD_CLIENTE" value="<%= t_monitoreo.COD_CLIENTE %>">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="codigo" class="form-label">Código de cliente</label>
+          <input type="text" class="form-control" id="codigo" name="COD_CLIENTE" value="<%= t_monitoreo.COD_CLIENTE %>" readonly  style="background-color: #e9ecef; color: #6c757d; border-color: #ced4da; cursor: not-allowed;" />
+        </div>
+        <div class="col-md-6">
+          <label for="alias" class="form-label">Alias de cliente</label>
+          <input type="text" class="form-control" id="alias" name="CLIENTE_ALIAS" value="<%= t_monitoreo.CLIENTE_ALIAS %>" required />
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="nombre" class="form-label">Nombre de cliente</label>
+          <input type="text" class="form-control" id="nombre" name="NOMBRES" value="<%= t_monitoreo.NOMBRES %>" />
+        </div>
+        <div class="col-md-6">
+          <label for="habilidad" class="form-label">Habilidad</label>
+          <select class="form-select" id="habilidad" name="SKILL" required>
+            <option value="" disabled <%= !t_monitoreo.SKILL ? 'selected' : '' %>>Selecciona una opción</option>
+            <option value="MONITOREO-01" <%= t_monitoreo.SKILL === 'MONITOREO-01' ? 'selected' : '' %>>MONITOREO-01</option>
+            <option value="MONITOREO-02" <%= t_monitoreo.SKILL === 'MONITOREO-02' ? 'selected' : '' %>>MONITOREO-02</option>
+            <option value="MONITOREO-03" <%= t_monitoreo.SKILL === 'MONITOREO-03' ? 'selected' : '' %>>MONITOREO-03</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="descripcion" class="form-label">Descripción</label>
+          <select class="form-select" id="descripcion" name="SKILL_DES" required>
+            <option value="" disabled <%= !t_monitoreo.SKILL_DES ? 'selected' : '' %>>Selecciona una opción</option>
+            <option value="Entel Call Center" <%= t_monitoreo.SKILL_DES === 'Entel Call Center' ? 'selected' : '' %>>Entel Call Center</option>
+            <option value="Entel Torre" <%= t_monitoreo.SKILL_DES === 'Entel Torre' ? 'selected' : '' %>>Entel Torre</option>
+            <option value="Entel Concepcion" <%= t_monitoreo.SKILL_DES === 'Entel Concepcion' ? 'selected' : '' %>>Entel Concepción</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="plataforma" class="form-label">Plataforma</label>
+          <input type="text" class="form-control" id="plataforma" name="PLATAFORMA" value="<%= t_monitoreo.PLATAFORMA %>" />
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-success btn-icon" ><i class='bx bxs-save'></i> Guardar</button>
+        <a href="/" class="btn btn-icon btn-cancel" id="btnc2"><i class='bx bx-arrow-back'></i> Cancelar </a>
+      </div>
+    </form>
+  </div>
+</div>
+<% } %>
+<!-- FORMULARIO -->
+
+<!-- FOOTER -->
+<footer class="footer footer-entel text-white text-center py-3">
+  <div class="container">ENTEL MONITOREO © 2025 - Todos los derechos reservados</div>
+</footer>
+<!-- FOOTER -->
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<!-- SCRIPTS -->
+
+</body>
+</html>
